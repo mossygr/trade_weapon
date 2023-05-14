@@ -1,0 +1,35 @@
+{% extends 'base.html' %}
+
+{% block title %}Trade PNL{% endblock %}
+
+{% block content %}
+    <h1>Trade PNL</h1>
+    <form action="/add" method="POST">
+        <div class="form-group">
+            <label for="symbol">Symbol:</label>
+            <input type="text" id="symbol" name="symbol" class="form-control" required>
+        </div>
+        <div class="form-group">
+            <label for="result">Result:</label>
+            <select id="result" name="result" class="form-control" required>
+                <option value="Take Profit">Take Profit</option>
+                <option value="Break Even">Break Even</option>
+                <option value="Stop Loss">Stop Loss</option>
+            </select>
+        </div>
+        <div class="form-group">
+            <label for="profit_loss">Profit or Loss:</label>
+            <input type="text" id="profit_loss" name="profit_loss" class="form-control" required>
+        </div>
+        <div class="form-group">
+            <label for="notes">Notes:</label>
+            <textarea id="notes" name="notes" class="form-control"></textarea>
+        </div>
+        <div class="form-group">
+            <label for="date">Date:</label>
+            <input type="date" id="date" name="date" class="form-control" required>
+        </div>
+        <button type="submit" class="btn btn-primary">Add Transaction</button>
+    </form>
+{% endblock %}
+

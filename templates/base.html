@@ -1,0 +1,29 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>{% block title %}{% endblock %}</title>
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
+</head>
+<body>
+    <nav class="navbar navbar-expand-lg navbar-dark bg-dark">
+        <a class="navbar-brand" href="/">Trading App</a>
+        <ul class="navbar-nav ml-auto">
+            <li class="nav-item">
+                <a class="nav-link" href="/transactions">Transactions</a>
+            </li>
+            <li class="nav-item">
+                <a class="nav-link" href="/tradepnl">Trade PNL</a>
+            </li>
+            <li class="nav-item">
+                <a class="nav-link" href="/mydata">My Data</a>
+            </li>
+        </ul>
+    </nav>
+
+    <div class="container mt-5">
+        {% block content %}
+        {% endblock %}
+    </div>
+</body>
+</html>
+
