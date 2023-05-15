@@ -38,6 +38,18 @@ def add_transaction():
 
     return redirect(url_for('transactions'))
 
+@app.route('/position_calculator', methods=['GET', 'POST'])
+def position_calculator():
+    if request.method == 'POST':
+        amount = float(request.form['amount'])
+        stop_loss_percentage = float(request.form['stop_loss_percentage'])
+
+        leverage = amount / (stop_loss_percentage * 0.01)
+
+        return render_template('position_calculator.html', position_size=leverage)
+
+    return render_template('position_calculator.html')
+
 @app.route('/transactions')
 def transactions():
     transactions = load_transactions()
@@ -86,4 +98,3 @@ def save_amount(balance):
 
 if __name__ == '__main__':
     app.run(debug=True)
-

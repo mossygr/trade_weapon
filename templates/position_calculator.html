@@ -1,0 +1,57 @@
+<!-- position_calculator.html -->
+{% extends 'base.html' %}
+
+{% block title %}Position Size Calculator{% endblock %}
+
+{% block content %}
+    <div class="container">
+        <div class="row">
+            <div class="col-md-6 offset-md-3">
+                <h1>Position Size Calculator</h1>
+                <form id="position-calculator-form" onsubmit="event.preventDefault();">
+                    <div class="form-group">
+                        <label for="amount">Amount:</label>
+                        <input type="text" id="amount" name="amount" value="20" required>
+                    </div>
+                    <div class="form-group">
+                        <label for="stop_loss_percentage">Stop Loss Percentage:</label>
+                        <input type="text" id="stop_loss_percentage" name="stop_loss_percentage" required>
+                    </div>
+                    <div class="form-group">
+                        <label for="leverage">Calculate Leverage:</label>
+                        <div class="btn-group" role="group" aria-label="Predefined Amount">
+                            <button type="button" class="btn btn-secondary" onclick="updatePositionSize(20)">20</button>
+                            <button type="button" class="btn btn-secondary" onclick="updatePositionSize(50)">50</button>
+                            <button type="button" class="btn btn-secondary" onclick="updatePositionSize(100)">100</button>
+                        </div>
+                    </div>
+                    <button type="submit" class="btn btn-primary" onclick="calculatePositionSize()">Calculate</button>
+                </form>
+                <div class="result">
+                    <h3>Position Size:</h3>
+                    <p id="position_size"></p>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <script>
+        var positionSize = 0;
+
+        function calculatePositionSize() {
+            var amount = parseFloat(document.getElementById('amount').value);
+            var stopLossPercentage = parseFloat(document.getElementById('stop_loss_percentage').value);
+            positionSize = amount / (stopLossPercentage * 0.01);
+            document.getElementById('position_size').textContent = positionSize.toFixed(2);
+        }
+
+        function updatePositionSize(number) {
+            if (positionSize === 0) {
+                calculatePositionSize();
+            }
+            positionSize /= number;
+            document.getElementById('position_size').textContent = positionSize.toFixed(2);
+        }
+    </script>
+{% endblock %}
+
